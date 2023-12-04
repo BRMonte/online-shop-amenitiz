@@ -1,14 +1,23 @@
-<p style="color: green"><%= notice %></p>
+<div class="index-container d-flex flex-column align-items-center">
+  <p style="color: green"><%= notice %></p>
+  <%= render 'layouts/partials/search-bar' %>
 
-<h1>Items</h1>
-
-<div id="items">
-  <% @items.each do |item| %>
-    <%= render item %>
-    <p>
-      <%= link_to "Show this item", item %>
-    </p>
-  <% end %>
+  <div class="list-of-items container m-5">
+    <div class="dropdown">
+      <button class="dropbtn">Sort by</button>
+      <div class="dropdown-content">
+        <a href="#">Highest price</a>
+        <a href="#">Lowest price</a>
+        <a href="#">Alphabetical</a>
+        <a href="#">Reverse alphabetical</a>
+      </div>
+    </div>
+    <div class="row">
+      <% @items.each do |item| %>
+        <div class="col-4 mb-5">
+          <%= render 'layouts/partials/card', item: item %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<%= link_to "New item", new_item_path %>

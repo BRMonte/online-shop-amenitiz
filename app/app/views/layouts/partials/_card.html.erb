@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-image-container">
+    <img src=<%= item.item_images.first.img_url if item %> class="card-img-top" alt="food image">
+  </div>
+  <div class="card-body">
+  <%= link_to item_path(item) do %>
+    <h5 class="card-title"><%= item.name if item %></h5>
+  <% end %>
+  <%= link_to item_path(item) do %>
+    <p class="card-text"><%= item.description if item %></p>
+  <% end %>
+    <p class="card-text">€ <%= item.price if item %></p>
+  </div>
+  <%= form_with(model: @model, local: true, class: "item-quantity") do |form| %>
+    <%= form.number_field :field_name, placeholder: "0", class: "form-control input-number" %>
+    <%= form.button "Add to cart", type: "submit", class: "btn btn-primary" %>
+  <% end %>
+</div>

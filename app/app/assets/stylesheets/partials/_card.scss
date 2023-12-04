@@ -1,0 +1,28 @@
+.card {
+  height: 400px;
+  width: 300px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.card-image-container {
+  height: 66.66%;
+}
+
+.card-image-container img {
+ height: 100%;
+ width: 100%;
+ object-fit: cover;
+}
+
+.item-quantity {
+  display: flex;
+  gap: 10px;
+}
+
+.input-number {
+  width: 25%;
+  border: solid 2px lightgray;
+}

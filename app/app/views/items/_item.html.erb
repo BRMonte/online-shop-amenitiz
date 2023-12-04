@@ -1,2 +1,9 @@
-<div id="<%= dom_id item %>">
+<div class="card">
+  <img src=<%= @item.item_images.first.img_url if @item %> class="card-img-top" alt="food image">
+  <div class="card-body">
+    <h5 class="card-title"><%= @item.name if @item %></h5>
+    <p class="card-text"><%= @item.description if @item %></p>
+    <p class="card-text">€ <%= @item.price if @item %></p>
+  </div>
+  <a href="#" class="btn btn-primary">Add to cart</a>
 </div>

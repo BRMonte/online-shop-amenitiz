@@ -10,7 +10,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column">
+    <%= render 'layouts/partials/navbar' %>
+    <div class="page-container d-flex">
+    <%= render 'layouts/partials/sidebar' %>
     <%= yield %>
+    </div>
+    <%= render 'layouts/partials/footer' %>
   </body>
 </html>
