@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  has_many :itemImages, dependent: :destroy
+
   before_create :generate_code
   before_create :slugify
 
@@ -13,7 +15,7 @@ class Item < ApplicationRecord
     CodeGeneratorService.new(self, { letters: 2, numbers: 1 }).call
   end
 
-  def slufigy
+  def slugify
     self.slug = name.parameterize
   end
 end
