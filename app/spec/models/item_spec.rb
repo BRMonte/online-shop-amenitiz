@@ -22,5 +22,10 @@ RSpec.describe Item, type: :model do
       item.code = nil
       expect(item).not_to be_valid
     end
+
+    it 'is not valid without a slug' do
+      item.slug = nil
+      expect(item).not_to be_valid
+    end
   end
 end
