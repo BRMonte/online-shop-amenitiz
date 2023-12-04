@@ -17,5 +17,10 @@ RSpec.describe Item, type: :model do
       item.price = nil
       expect(item).not_to be_valid
     end
+
+    it 'is not valid without a code' do
+      item.code = nil
+      expect(item).not_to be_valid
+    end
   end
 end
