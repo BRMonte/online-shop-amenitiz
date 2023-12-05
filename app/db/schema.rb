@@ -10,27 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_04_021114) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_05_181754) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "discounts", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "discount_type"
-    t.boolean "active"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.integer "discount_value"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "item_images", force: :cascade do |t|
     t.string "img_url"
@@ -50,32 +32,26 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_04_021114) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "products", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.float "price"
-    t.string "code"
-    t.string "slug"
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "order_id", null: false
+    t.float "unit_price"
+    t.integer "quantity"
+    t.float "total_price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "price_unit"
-    t.bigint "category_id"
-    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["item_id"], name: "index_order_items_on_item_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+  create_table "orders", force: :cascade do |t|
+    t.float "subtotal"
+    t.float "total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "role"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "item_images", "items"
-  add_foreign_key "products", "categories"
+  add_foreign_key "order_items", "items"
+  add_foreign_key "order_items", "orders"
 end
