@@ -12,3 +12,35 @@
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  font-size: 18px;
+}
+
+.logo {
+  margin-left: 30px;
+}
+
+.nav-links {
+  margin-right: 30px;
+}
+
+.shop-cart {
+  color: gold;
+  margin-right: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.round-container {
+  font-size: 16px;
+  height: 50px;
+  width: 70px;
+  border: 1.5px solid gold;
+  border-radius: 50%;
+  text-align: center;
+}

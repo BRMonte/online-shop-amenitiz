@@ -28,3 +28,18 @@
 a {
   text-decoration: none;
 }
+
+.fixed-layout {
+  margin: 30px;
+  table-layout: fixed;
+}
+
+.table tr:hover td {
+  background-color: lightgray;
+}
+
+.fixed-layout img {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+}
