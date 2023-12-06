@@ -1,3 +1,4 @@
+<%= render 'layouts/partials/back_to_products' %>
 <div class="card">
   <div class="card-image-container">
     <img src=<%= item.item_images.first.try(:img_url) %> class="card-img-top" alt="food image">
@@ -11,8 +12,9 @@
   <% end %>
     <p class="card-text">€ <%= item.price if item %></p>
   </div>
-  <%= form_with(model: @model, local: true, class: "item-quantity") do |form| %>
-    <%= form.number_field :field_name, placeholder: "0", class: "form-control input-number" %>
-    <%= form.button "Add to cart", type: "submit", class: "btn btn-primary" %>
+  <%= form_for(@order_item) do |f| %>
+    <%= f.hidden_field :item_id, value: item.id %>
+    <%= f.text_field :quantity, value: 1, min: 1, class: "form-control" %>
+    <%= f.submit "Add to cart", class: "btn btn-primary btn-sm" %>
   <% end %>
-</div>
+  </div>
