@@ -2,18 +2,13 @@ class Order < ApplicationRecord
   has_many :order_items
   before_save :set_subtotal
 
-  # def subtotal
-  #   order_items.collect { |order_item| order_item.valid? ? (order_item.unit_price * order_item.quantity) : 0 }.sum
-  # end
-
   def subtotal
-    valid_order_items = order_items.select(&:valid?)
-    valid_order_items.map { |order_item| order_item.unit_price * order_item.quantity }.sum
+    order_items.collect { |order_item| order_item.valid? ? (order_item.unit_price * order_item.quantity) : 0 }.sum
   end
 
   private
 
   def set_subtotal
-    self.subtotal = subtotal
+    self[:subtotal] = subtotal
   end
 end
