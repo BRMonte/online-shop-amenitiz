@@ -1,0 +1,1 @@
+<%= link_to "#{current_order.order_items.sum(:quantity)} items € #{current_order.subtotal.round(2)}", cart_path(current_order.id) %>

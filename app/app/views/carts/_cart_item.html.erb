@@ -1,0 +1,47 @@
+<% if order_has_items?(@order_items) %>
+  <div class="cart-page">
+    <div class="order-item-wrapper">
+      <% @order_items.each do |order_item| %>
+        <div class="test-again">
+          <div class="mb-5 card-product">
+            <img src=<%= get_item_image(order_item) %> />
+            <div class="card-product-infos">
+              <h2><%= get_item_name(order_item) %></h2>
+              <p> $
+                <%= get_item_individual_price(order_item) %> x <%= get_item_quantity(order_item) %> = <%= get_item_total_price(order_item) %>
+              </p>
+              <div class="update-order">
+                <%= form_for(order_item, remote: true) do |f| %>
+                  <%= f.hidden_field :item_id, value: order_item.item.id %>
+                  <div class="pricing-wrapper">
+                    <div class="col-3">
+                      <%= f.number_field :quantity, value: get_item_quantity(order_item), min: 1, class: 'form-control' %>
+                    </div>
+                    <div class="col-3">
+                      <%= f.submit "Update", class: 'btn btn-primary' %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="mb-5">
+            <%= link_to order_item, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+              <i class="bi bi-trash"></i>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="shop-cart-total-price">
+      <h5>Total</h5>
+      <h4><%= get_cart_total_price(@order_items) %>
+      </h4>
+    </div>
+  </div>
+
+<% else %>
+     <h5>0 nothing niente</h5>
+<% end %>
