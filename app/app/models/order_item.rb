@@ -3,7 +3,7 @@ class OrderItem < ApplicationRecord
   belongs_to :item
 
   def unit_price
-    persisted? ? self[:unit_price] : item.price
+    item.price
   end
 
   def total_price
