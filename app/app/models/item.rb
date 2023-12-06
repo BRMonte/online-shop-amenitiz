@@ -1,13 +1,20 @@
 class Item < ApplicationRecord
-  has_many :itemImages, dependent: :destroy
+  has_many :item_images, dependent: :destroy
+  has_many :order_items
 
   before_create :generate_code
-  before_create :slugify
+  before_create :generate_slug
 
   validates :name, presence: true, uniqueness: true
   validates :price, presence: true
-  validates :code, presence: true, uniqueness: true
-  validates :slug, presence: true
+  validates :code, uniqueness: true
+  validates :slug, uniqueness: true
+
+  def self.search(search_param)
+    return Item.all unless search_param.present?
+
+    result = Item.where("name ~* ?", search_param)
+  end
 
   private
 
@@ -15,7 +22,7 @@ class Item < ApplicationRecord
     CodeGeneratorService.new(self, { letters: 2, numbers: 1 }).call
   end
 
-  def slugify
+  def generate_slug
     self.slug = name.parameterize
   end
 end
