@@ -1,9 +1,69 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+items = [
+  {
+    name: 'Coffee',
+    img_url: 'https://assets.bonappetit.com/photos/5c366551f212512d0e6cefd0/16:9/w_2240,c_limit/Basically-Coffee-0219-03.jpg',
+    description: "Delicious and amazing food"
+  },
+  {
+    name: 'Bread',
+    img_url: 'https://assets.bonappetit.com/photos/5c62e4a3e81bbf522a9579ce/1:1/w_2240,c_limit/milk-bread.jpg',
+    description: "Delicious and amazing food"
+  },
+  {
+    name: 'Strawberries',
+    img_url: 'https://hips.hearstapps.com/clv.h-cdn.co/assets/15/22/1432664914-strawberry-facts1.jpg?resize=980:*',
+    description: "Delicious and amazing food"
+  },
+  {
+    name: 'Green tea',
+    img_url: 'https://www.revolutiontea.com/cdn/shop/articles/history-of-green-tea.jpg?v=1623361605',
+    description: "Delicious and amazing food"
+  },
+  {
+    name: 'Green tea',
+    img_url: 'https://www.revolutiontea.com/cdn/shop/articles/history-of-green-tea.jpg?v=1623361605',
+    description: "Delicious and amazing food"
+  },
+  {
+    name: 'Red wine',
+    img_url: 'https://media.istockphoto.com/id/157405246/pt/foto/vinho-tinto-xxl.jpg?s=612x612&w=0&k=20&c=T7riI3Mt61HdLVQK4jtNLAIndh8N3t8m02A11HwVzwg=',
+    description: "Delicious and amazing food"
+  },
+  {
+    name: 'Blue cheese',
+    img_url: 'https://cdn.britannica.com/09/3809-004-50E1BB9B/Roquefort-cheese.jpg',
+    description: "Delicious and amazing food"
+  }
+]
+
+def generate_random_price
+  random_number = rand * 10.00
+  random_number = random_number.round(2)
+end
+
+def define_price(item)
+  return 3.11 if item == 'Green tea'
+  return 5.00 if item == 'Strawberries'
+  return 11.23 if item == 'Coffee'
+  return 15.00 if item == 'Red wine'
+
+  return generate_random_price
+end
+
+items.each do |i|
+  item = Item.new(
+    name: i[:name],
+    description: i[:description],
+    price: define_price(i),
+    slug: i[:name].parameterize
+  )
+
+  CodeGeneratorService.new(item, { numbers: 1, letters: 2 }).call
+
+  item.save
+
+  item_image = ItemImage.create(
+    item_id: item.id,
+    img_url: i[:img_url]
+  )
+end
