@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
   def index
     @order_item = current_order.order_items.new
     @items = Item.search(params[:query]).order(SORT_ORDERS[params[:sort]])
+    @items = @items.page(params[:page]).per(3)
   end
 
   def show
@@ -26,7 +27,7 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      redirect_to item_url @item, notice: "Item was successfully created."
+      redirect_to item_url @item, notice: 'Successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,7 +35,7 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      redirect_to manage_items_path, notice: "Item was successfully updated."
+      redirect_to manage_items_path, notice: 'Successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end

@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  paginates_per 3
+
   has_many :item_images, dependent: :destroy
   has_many :order_items
 
