@@ -1,7 +1,12 @@
 <div class="index-container d-flex flex-column align-items-center">
   <p style="color: green"><%= notice %></p>
-  <%= render 'layouts/partials/search-bar' if current_page?(root_path) %>
-  <%= render 'layouts/partials/pagination_component' %>
+
+  <div class="index-navigation-wrapper">
+    <%= render 'layouts/partials/search-bar' if current_page?(root_path) %>
+    <%= render 'layouts/partials/back_to_products' %>
+    <%= render 'layouts/partials/pagination_component' if current_page?(root_path)%>
+  </div>
+
   <div class="list-of-items container m-5">
     <%= render 'layouts/partials/sorting_component' if current_page?(root_path) %>
     <div class="row">
