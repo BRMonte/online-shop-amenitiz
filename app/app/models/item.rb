@@ -10,6 +10,9 @@ class Item < ApplicationRecord
   validates :code, uniqueness: true
   validates :slug, uniqueness: true
 
+  scope :alphabetical, -> { order(name: :asc) }
+  scope :by_price, -> { order(price: :asc) }
+
   def self.search(search_param)
     return Item.all unless search_param.present?
 

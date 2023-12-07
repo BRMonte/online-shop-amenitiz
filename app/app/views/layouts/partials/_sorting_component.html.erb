@@ -1,0 +1,10 @@
+<div class="dropdown">
+  <button class="dropbtn">Sort by</button>
+  <div class="dropdown-content">
+    <%= link_to "Highest Price", items_path(sort: "price_desc") %>
+
+    <%= link_to "Lowest Price", items_path(sort: "price") %>
+
+    <%= link_to "Alphabetical", items_path(sort: "alpha") %>
+  </div>
+</div>

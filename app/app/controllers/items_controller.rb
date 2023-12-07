@@ -1,9 +1,15 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[show edit update destroy]
 
+  SORT_ORDERS = {
+    "price" => "price ASC",
+    "price_desc" => "price DESC",
+    "alpha" => "name ASC"
+  }
+
   def index
     @order_item = current_order.order_items.new
-    @items = Item.search(params[:query])
+    @items = Item.search(params[:query]).order(SORT_ORDERS[params[:sort]])
   end
 
   def show
@@ -27,11 +33,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-      if @item.update(item_params)
-        redirect_to manage_items_path, notice: "Item was successfully updated."
-      else
-        render :edit, status: :unprocessable_entity
-      end
+    if @item.update(item_params)
+      redirect_to manage_items_path, notice: "Item was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
