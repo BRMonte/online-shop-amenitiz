@@ -35,10 +35,15 @@
     </div>
 
 
-    <div class="shop-cart-total-price">
-      <h5>Total</h5>
-      <h4><%= get_cart_total_price(@order_items) %>
-      </h4>
+    <div class="shop-cart-total-price d-flex flex-column">
+      <div class="mb-5 mt-5">
+        <h5>Subotal</h5>
+        <h4><%= get_cart_subtotal_price(@order_items) %></h4>
+      </div>
+      <div class="mb-5 mt-5">
+        <h5>Total after discounts</h5>
+        <h4><%= get_cart_total_price(@order_items) %></h4>
+      </div>
     </div>
   </div>
 

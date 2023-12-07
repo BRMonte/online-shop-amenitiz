@@ -24,7 +24,13 @@ module OrderItemsHelper
     order_item.total_price.round(2)
   end
 
-  def get_cart_total_price(order_items)
+  def get_cart_subtotal_price(order_items)
     order_items.first.order.subtotal.round(2)
+  end
+
+  def get_cart_total_price(order_items)
+    ApplyDiscountService.new(order_items).call
+
+    order_items.first.order.subtotal
   end
 end
