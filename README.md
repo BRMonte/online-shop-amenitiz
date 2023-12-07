@@ -23,6 +23,7 @@ Things left out:
 5- serialization
 6- in a more robust app I would have jobs to keep track of discount status
 7- I left some N+1 query issues behind
+8- slug for items to optimize SEO and UX
 
 My focus was on the architecture, giving an idea of how things could scale.
 About the discount system, it could be different, allowing the CRUD operation on an eventual admin panel, but my way to go was a simple ServiceObject to isolate the logic.
