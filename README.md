@@ -16,7 +16,7 @@ Features:
 4- a shop cart that calculates discounts
 
 Things left out:
-1- authentication with devise gem. That's why I didn't isolate some routes in a user.admin role as it would be done on a regular app. 
+1- authentication with devise. That's why I didn't isolate some routes in a user.admin role as it would be done on a regular app. 
 2- API versioning
 3- mailing system 
 4- React front-end app
@@ -24,6 +24,8 @@ Things left out:
 6- in a more robust app I would have jobs to keep track of discount status
 7- I left some N+1 query issues behind
 8- slug for items to optimize SEO and UX
+9- broader responsiveness
+10- internationalization
 
 My focus was on the architecture, giving an idea of how things could scale.
 About the discount system, it could be different, allowing the CRUD operation on an eventual admin panel, but my way to go was a simple ServiceObject to isolate the logic.
