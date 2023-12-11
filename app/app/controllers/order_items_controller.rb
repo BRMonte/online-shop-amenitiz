@@ -6,6 +6,8 @@ class OrderItemsController < ApplicationController
     @order.save
 
     session[:order_id] = @order.id
+
+    head :no_content
   end
 
   def update
