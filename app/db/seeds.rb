@@ -6,7 +6,7 @@ items = [
   },
   {
     name: 'Bread',
-    img_url: 'https://assets.bonappetit.com/photos/5c62e4a3e81bbf522a9579ce/1:1/w_2240,c_limit/milk-bread.jpg',
+    img_url: 'https://www.bhg.com/thmb/ix1jf9aUXcxyFtekIBlVCAIBW4w=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/BHG-milk-bread-4CdeIL1uKGyB5ryU8J_EED-aaa76729c86a413ca7500029edba79f0.jpg',
     description: 'Delicious and amazing food'
   },
   {
