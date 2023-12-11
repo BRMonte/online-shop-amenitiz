@@ -46,7 +46,7 @@ RSpec.describe Item, type: :model do
   end
 
   describe 'methods' do
-    describe '.search' do
+    describe '#search' do
       let!(:item1) { create(:item, name: 'Green Shirt') }
 
       it 'returns all items when empty' do

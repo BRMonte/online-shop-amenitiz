@@ -18,7 +18,7 @@ class Item < ApplicationRecord
   def self.search(search_param)
     return Item.all unless search_param.present?
 
-    result = Item.where("name ~* ?", search_param)
+    Item.where('name ~* ?', search_param)
   end
 
   private
