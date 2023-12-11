@@ -1,15 +1,15 @@
 <div class="card">
   <div class="card-image-container">
-    <img src=<%= item.item_images.first.try(:img_url) %> class="card-img-top" alt="food image">
+    <img src=<%= item_image(item) %> class="card-img-top" alt="food image">
   </div>
   <div class="card-body">
   <%= link_to item_path(item) do %>
-    <h5 class="card-title"><%= item.name if item %></h5>
+    <h5 class="card-title"><%= item_name(item) %></h5>
   <% end %>
   <%= link_to item_path(item) do %>
-    <p class="card-text"><%= item.description if item %></p>
+    <p class="card-text"><%= item_description(item) %></p>
   <% end %>
-    <p class="card-text">€ <%= item.price if item %></p>
+    <p class="card-text">€ <%= item_price(item) %></p>
   </div>
   <%= form_for(@order_item) do |f| %>
     <%= f.hidden_field :item_id, value: item.id %>

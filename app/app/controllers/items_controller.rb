@@ -9,8 +9,11 @@ class ItemsController < ApplicationController
 
   def index
     @order_item = current_order.order_items.new
-    @items = Item.search(params[:query]).order(SORT_ORDERS[params[:sort]])
-    @items = @items.page(params[:page]).per(3)
+    @items = Item.includes(:item_images, :order_items)
+                 .search(params[:query])
+                 .order(SORT_ORDERS[params[:sort]])
+                 .page(params[:page])
+                 .per(3)
   end
 
   def show
